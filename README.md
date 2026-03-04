@@ -58,14 +58,7 @@ cd curriculum-ai
 pip install -r requirements.txt
 ```
 
-### 3. Add your API key
-```bash
-mkdir -p .streamlit
-cp .streamlit/secrets.toml.example .streamlit/secrets.toml
-# Edit .streamlit/secrets.toml and add your Anthropic API key
-```
-
-### 4. Run the app
+### 3. Run the app
 ```bash
 streamlit run app.py
 ```
@@ -78,26 +71,16 @@ streamlit run app.py
 2. Go to [share.streamlit.io](https://share.streamlit.io)
 3. Connect your GitHub repo
 4. In **Advanced Settings → Secrets**, add:
-```toml
-ANTHROPIC_API_KEY = "sk-ant-your-key-here"
-```
-5. Click **Deploy** — your app is live! 🎉
+
+4. Click **Deploy** — your app is live! 🎉
 
 ---
 
-## 🔑 Getting an Anthropic API Key
-
-1. Go to [console.anthropic.com](https://console.anthropic.com)
-2. Sign up / log in
-3. Navigate to **API Keys** → **Create Key**
-4. Copy and paste into your secrets file
-
----
 
 ## 🧩 Tech Stack
 
 - **Frontend**: Streamlit (Python)
-- **AI**: Anthropic Claude (`claude-sonnet-4-20250514`)
+- **AI**: Sarvam AI
 - **Pattern**: Multi-Agent Orchestration with Task & Progress Ledgers
 - **Deployment**: Streamlit Cloud
 
@@ -134,12 +117,7 @@ curriculum-ai/
 
 Pull requests are welcome! For major changes, please open an issue first.
 
----
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-*Built with ❤️ using Claude AI and Streamlit*
+*Built with ❤️ using Sarvam AI and Streamlit*
