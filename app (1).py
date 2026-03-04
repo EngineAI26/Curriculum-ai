@@ -1,6 +1,6 @@
 import streamlit as st
 import json
-import anthropic
+import requests
 from typing import Optional
 
 # ── Page config ──────────────────────────────────────────────────────────────
@@ -185,25 +185,40 @@ div[data-testid="stMetricValue"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ── Anthropic client ──────────────────────────────────────────────────────────
-@st.cache_resource
-def get_client():
-    return anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
+# ── Sarvam AI client ──────────────────────────────────────────────────────────
+SARVAM_API_URL = "https://api.sarvam.ai/v1/chat/completions"
+SARVAM_MODEL   = "sarvam-m"
 
-def call_claude(prompt: str, system: str = "", max_tokens: int = 2000) -> str:
-    client = get_client()
-    msgs = [{"role": "user", "content": prompt}]
-    kwargs = {"model": "claude-sonnet-4-20250514", "max_tokens": max_tokens, "messages": msgs}
+def call_sarvam(prompt: str, system: str = "", max_tokens: int = 2000) -> str:
+    api_key = st.secrets["SARVAM_API_KEY"]
+    messages = []
     if system:
-        kwargs["system"] = system
-    resp = client.messages.create(**kwargs)
-    return resp.content[0].text
+        messages.append({"role": "system", "content": system})
+    messages.append({"role": "user", "content": prompt})
 
-def call_claude_json(prompt: str, system: str = "") -> dict:
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": SARVAM_MODEL,
+        "messages": messages,
+        "max_tokens": max_tokens,
+        "temperature": 0.3,
+    }
+    resp = requests.post(SARVAM_API_URL, headers=headers, json=payload, timeout=60)
+    resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"]
+
+def call_sarvam_json(prompt: str, system: str = "") -> dict:
     system_full = (system + "\n\n" if system else "") + "IMPORTANT: Respond ONLY with valid JSON. No markdown, no backticks, no extra text."
-    raw = call_claude(prompt, system_full, max_tokens=2000)
+    raw = call_sarvam(prompt, system_full, max_tokens=2000)
     raw = raw.strip().lstrip("```json").lstrip("```").rstrip("```").strip()
     return json.loads(raw)
+
+# aliases so rest of app works unchanged
+call_claude      = call_sarvam
+call_claude_json = call_sarvam_json
 
 # ── Session state defaults ────────────────────────────────────────────────────
 defaults = {
