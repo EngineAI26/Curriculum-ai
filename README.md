@@ -45,34 +45,6 @@ Task (User Input)
 
 ---
 
-## 🚀 Quick Start
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/YOUR_USERNAME/curriculum-ai.git
-cd curriculum-ai
-```
-
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run the app
-```bash
-streamlit run app.py
-```
-
----
-
-## ☁️ Deploy on Streamlit Cloud (Free)
-
-1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub repo
-4. In **Advanced Settings → Secrets**, add:
-
-4. Click **Deploy** — your app is live! 🎉
 
 ---
 
@@ -112,12 +84,3 @@ curriculum-ai/
 7. **Track progress** — View the Progress Ledger and Gap Analysis
 
 ---
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first.
-
-
----
-
-*Built with ❤️ using Sarvam AI and Streamlit*
