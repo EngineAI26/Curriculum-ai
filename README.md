@@ -4,8 +4,6 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app.streamlit.app)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
-![Claude](https://img.shields.io/badge/Powered%20by-Claude%20AI-purple)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
